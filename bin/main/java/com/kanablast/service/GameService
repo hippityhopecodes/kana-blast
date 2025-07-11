@@ -1,0 +1,105 @@
+public class GameService {
+    /** Holds the Katakana characters for the game */
+    private List<JapaneseCharacter> katakanaCharacters;
+    /** Holds the Hiragana characters for the game */
+    private List<JapaneseCharacter> hiraganaCharacters;
+    /** Holds ALL of the characters for the game */
+    private List<JapaneseCharacter> allCharacters;
+    /** Current score of the game */
+    private int score;
+    /** Time remaining in seconds for the game */
+    private int secondsRemaining;
+
+    /**
+     * Constructor for GameService, initializes the game state
+     */
+    public GameService() {
+        // Initialize character lists
+        katakanaCharacters = initializeKatakanaCharacters();
+        hiraganaCharacters = initializeHiraganaCharacters();
+
+        // Combine both character lists into one if needed
+        allCharacters = new ArrayList<>();
+        allCharacters.addAll(katakanaCharacters);
+        allCharacters.addAll(hiraganaCharacters);
+
+        // Initialize game state
+        score = 0;
+        secondsRemaining = 60;
+    }
+
+    private List<JapaneseCharacter> initializeKatakanaCharacters() {
+        List<JapaneseCharacter> katakana = new ArrayList<>();
+        katakana.add(new JapaneseCharacter("ア", "a", JapaneseCharacter.CharType.KATAKANA));
+        katakana.add(new JapaneseCharacter("イ", "i", JapaneseCharacter.CharType.KATAKANA));
+        katakana.add(new JapaneseCharacter("ウ", "u", JapaneseCharacter.CharType.KATAKANA));
+        katakana.add(new JapaneseCharacter("エ", "e", JapaneseCharacter.CharType.KATAKANA));
+        katakana.add(new JapaneseCharacter("オ", "o", JapaneseCharacter.CharType.KATAKANA));
+        // Add more Katakana characters as needed
+        return katakana;
+    }
+
+    private List<JapaneseCharacter> initializeHiraganaCharacters() {
+        List<JapaneseCharacter> hiragana = new ArrayList<>();
+        hiragana.add(new JapaneseCharacter("あ", "a", JapaneseCharacter.CharType.HIRAGANA));
+        hiragana.add(new JapaneseCharacter("い", "i", JapaneseCharacter.CharType.HIRAGANA));
+        hiragana.add(new JapaneseCharacter("う", "u", JapaneseCharacter.CharType.HIRAGANA));
+        hiragana.add(new JapaneseCharacter("え", "e", JapaneseCharacter.CharType.HIRAGANA));
+        hiragana.add(new JapaneseCharacter("お", "o", JapaneseCharacter.CharType.HIRAGANA));
+        // Add more Hiragana characters as needed
+        return hiragana;
+    }
+
+    /**
+     * Checks if the provided input matches the expected Romaji for the given character
+     * @param input the character input by the user
+     * @param expected the expected Romaji representation
+     * @return true if the input matches the expected Romaji, false otherwise
+     */
+    public boolean checkAnswer(String input, String expected) {
+        return allCharacters.stream().filter(c -> c.getCharacter().equals(input)).findFirst().map(c -> c.getRomaji().equals(expected)).orElse(false);
+    }
+
+    /**
+     * Increments the score by a specified amount
+     * @param points the number of points to add to the score
+     */
+    public void incrementScore(int points) {
+        score += points;
+    }
+    /**
+     * Returns the current score of the game
+     * @return the current score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Returns the time remaining in seconds
+     * @return the remaining time in seconds
+     */
+    public int getSecondsRemaining() {
+        return secondsRemaining;
+    }
+
+    /**
+     * Decrements the time remaining by one second
+     */
+    public void decrementTime() {
+        if (secondsRemaining > 0) {
+            secondsRemaining--;
+        }
+    }
+
+    /**
+     * Resets the game state to initial values
+     */
+    public void resetGame() {
+        score = 0;
+        secondsRemaining = 60; // Reset to initial time
+        allCharacters.clear();
+        allCharacters.addAll(katakanaCharacters);
+        allCharacters.addAll(hiraganaCharacters);
+    }
+}

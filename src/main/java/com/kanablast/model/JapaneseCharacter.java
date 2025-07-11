@@ -17,10 +17,7 @@ public class JapaneseCharacter {
     /**
      * Enum representing the type of Japanese character.
      */
-    public enum CharType {
-        HIRAGANA,
-        KATAKANA,
-    }
+    public enum CharType {HIRAGANA, KATAKANA}
 
     /**
      * Japanese character represented as a string.
