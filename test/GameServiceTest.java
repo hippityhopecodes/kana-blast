@@ -1,3 +1,10 @@
+package com.kanablast.service;
+import main.java.com.kanablast.service.GameService;
+import main.java.com.kanablast.model.JapaneseCharacter;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Tests GameService class
  * @author hippityhopecodes

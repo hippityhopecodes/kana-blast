@@ -1,3 +1,16 @@
+package main.java.com.kanablast.service;
+
+import main.java.com.kanablast.model.JapaneseCharacter;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * GameService handles the game logic for KanaBlast, including character management,
+ * score tracking, and answer validation.
+ * 
+ * @author hippityhopecodes
+ */
 public class GameService {
     /** Holds the Katakana characters for the game */
     private List<JapaneseCharacter> katakanaCharacters;
